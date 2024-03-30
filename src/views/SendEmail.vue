@@ -26,7 +26,7 @@
                   </p>
                 </div>
                 <div class="pb-3 card-body">
-                  <Form
+                  <!-- <Form
                     role="form"
                     class="text-start"
                     :validation-schema="schema"
@@ -57,7 +57,7 @@
                         <span v-else>Send</span>
                       </soft-button>
                     </div>
-                  </Form>
+                  </Form> -->
                 </div>
               </div>
             </div>
@@ -87,11 +87,11 @@
 <script>
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
-import SoftField from "@/components/SoftField.vue";
-import SoftButton from "@/components/SoftButton.vue";
+/* import SoftField from "@/components/SoftField.vue";
+import SoftButton from "@/components/SoftButton.vue"; */
 import showSwal from "/src/mixins/showSwal.js";
 const body = document.getElementsByTagName("body")[0];
-import { Form } from "vee-validate";
+//import { Form } from "vee-validate";
 import * as yup from "yup";
 
 import { mapMutations } from "vuex";
@@ -100,9 +100,9 @@ export default {
   components: {
     Navbar,
     AppFooter,
-    SoftField,
-    SoftButton,
-    Form,
+    /* SoftField,
+    SoftButton, */
+    /* Form, */
   },
 
   data() {

@@ -24,7 +24,7 @@
                   <p class="mb-0">Please input your new password</p>
                 </div>
                 <div class="pb-3 card-body">
-                  <Form
+                  <!-- <Form
                     role="form"
                     class="text-start"
                     :validation-schema="schema"
@@ -61,7 +61,7 @@
                         <span v-else>Change</span>
                       </soft-button>
                     </div>
-                  </Form>
+                  </Form> -->
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ import AppFooter from "@/examples/PageLayout/Footer.vue";
 import SoftField from "@/components/SoftField.vue";
 import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
-import { Form } from "vee-validate";
+/* import { Form } from "vee-validate"; */
 import * as yup from "yup";
 import showSwal from "/src/mixins/showSwal.js";
 
@@ -106,7 +106,7 @@ export default {
     AppFooter,
     SoftField,
     SoftButton,
-    Form,
+    /* Form, */
   },
 
   data() {

@@ -24,7 +24,7 @@
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body pb-3">
-                  <Form
+                  <!-- <Form
                     role="form"
                     class="text-start"
                     :validation-schema="schema"
@@ -98,7 +98,7 @@
                         >
                       </div>
                     </div>
-                  </Form>
+                  </Form> -->
                 </div>
 
                 <div class="card-footer text-center pt-0 px-sm-4 px-1">
@@ -145,7 +145,7 @@ import SoftCheckModel from "@/components/SoftCheckModel.vue";
 import SoftButton from "@/components/SoftButton.vue";
 import showSwal from "/src/mixins/showSwal.js";
 const body = document.getElementsByTagName("body")[0];
-import { Form } from "vee-validate";
+/* import { Form } from "vee-validate"; */
 import * as yup from "yup";
 
 import { mapMutations } from "vuex";
@@ -157,7 +157,7 @@ export default {
     SoftField,
     SoftCheckModel,
     SoftButton,
-    Form,
+    /* Form, */
   },
   data() {
     const schema = yup.object().shape({
