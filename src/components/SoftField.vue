@@ -4,7 +4,7 @@
       <span v-if="iconDir === 'left'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
       </span>
-      <!-- <Field
+      <Field
         :id="id"
         :type="type"
         class="form-control"
@@ -14,12 +14,12 @@
         :is-required="isRequired"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
-      /> -->
-      <!-- <ErrorMessage
+      />
+      <ErrorMessage
         :name="name"
         class="error-feedback text-xs text-danger"
         role="alert"
-      /> --><br />
+      /><br />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
       </span>
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-/* import { Field, ErrorMessage } from "vee-validate"; */
+import { Field, ErrorMessage } from "vee-validate";
 export default {
   name: "SoftInput",
-  /* components: {
+  components: {
     Field,
     ErrorMessage,
-  }, */
+  },
   props: {
     size: {
       type: String,

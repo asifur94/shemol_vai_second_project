@@ -24,7 +24,7 @@
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body pb-3">
-                  <!-- <Form
+                  <Form
                     role="form"
                     class="text-start"
                     :validation-schema="schema"
@@ -98,7 +98,7 @@
                         >
                       </div>
                     </div>
-                  </Form> -->
+                  </Form>
                 </div>
 
                 <div class="card-footer text-center pt-0 px-sm-4 px-1">
@@ -140,12 +140,12 @@
 <script>
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
-/* import SoftField from "@/components/SoftField.vue";
+import SoftField from "@/components/SoftField.vue";
 import SoftCheckModel from "@/components/SoftCheckModel.vue";
-import SoftButton from "@/components/SoftButton.vue"; */
+import SoftButton from "@/components/SoftButton.vue";
 import showSwal from "/src/mixins/showSwal.js";
 const body = document.getElementsByTagName("body")[0];
-/* import { Form } from "vee-validate"; */
+import { Form } from "vee-validate";
 import * as yup from "yup";
 
 import { mapMutations } from "vuex";
@@ -154,10 +154,10 @@ export default {
   components: {
     Navbar,
     AppFooter,
-    /* SoftField,
+    SoftField,
     SoftCheckModel,
-    SoftButton, */
-    /* Form, */
+    SoftButton,
+    Form,
   },
   data() {
     const schema = yup.object().shape({

@@ -45,6 +45,7 @@
     "round-slider": "1.6.1",
     "simple-datatables": "3.2.0",
     "three": "0.124.0",
+    "vee-validate": "^4.12.6",
     "vue": "3.2.0",
     "vue-count-to": "1.0.13",
     "vue-flatpickr-component": "9.0.5",
