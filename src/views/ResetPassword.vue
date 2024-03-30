@@ -91,8 +91,8 @@
 <script>
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
-import SoftField from "@/components/SoftField.vue";
-import SoftButton from "@/components/SoftButton.vue";
+/* import SoftField from "@/components/SoftField.vue";
+import SoftButton from "@/components/SoftButton.vue"; */
 const body = document.getElementsByTagName("body")[0];
 /* import { Form } from "vee-validate"; */
 import * as yup from "yup";
@@ -104,8 +104,8 @@ export default {
   components: {
     Navbar,
     AppFooter,
-    SoftField,
-    SoftButton,
+    /* SoftField,
+    SoftButton, */
     /* Form, */
   },
 

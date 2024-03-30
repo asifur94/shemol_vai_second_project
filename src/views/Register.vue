@@ -140,9 +140,9 @@
 <script>
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
-import SoftField from "@/components/SoftField.vue";
+/* import SoftField from "@/components/SoftField.vue";
 import SoftCheckModel from "@/components/SoftCheckModel.vue";
-import SoftButton from "@/components/SoftButton.vue";
+import SoftButton from "@/components/SoftButton.vue"; */
 import showSwal from "/src/mixins/showSwal.js";
 const body = document.getElementsByTagName("body")[0];
 /* import { Form } from "vee-validate"; */
@@ -154,9 +154,9 @@ export default {
   components: {
     Navbar,
     AppFooter,
-    SoftField,
+    /* SoftField,
     SoftCheckModel,
-    SoftButton,
+    SoftButton, */
     /* Form, */
   },
   data() {
