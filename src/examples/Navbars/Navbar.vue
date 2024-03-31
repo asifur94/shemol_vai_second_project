@@ -44,7 +44,7 @@
               <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
                 >يسجل دخول</span
               >
-              <span v-else class="d-sm-inline d-none">Sign In </span>
+              <span v-else class="d-sm-inline d-none">Admin</span>
             </router-link>
 
             <a

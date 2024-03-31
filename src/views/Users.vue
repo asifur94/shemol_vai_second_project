@@ -1,11 +1,5 @@
 <template>
   <div class="py-4 container-fluid">
-    <div class="form-group">
-      <div class="alert alert-danger text-white" role="alert">
-        Add, Edit, Delete features are not functional. This is a PRO feature!
-        Click <a style="text-decoration: underline" href="https://www.creative-tim.com/product/vue-soft-ui-dashboard-pro-laravel">here</a> to see the PRO product.
-      </div>
-    </div>
     <div class="row">
       <div class="col-12">
         <div class="card">

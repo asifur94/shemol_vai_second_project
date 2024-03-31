@@ -8,10 +8,10 @@
     </a>
     <div class="shadow-lg card blur">
       <div class="pt-3 pb-0 bg-transparent card-header">
-        <div class="float-start">
+        <!-- <div class="float-start">
           <h5 class="mt-3 mb-0">Soft UI Configurator</h5>
           <p>See our dashboard options.</p>
-        </div>
+        </div> -->
         <div class="mt-4 float-end" @click="toggle">
           <button class="p-0 btn btn-link text-dark fixed-plugin-close-button">
             <i class="fa fa-close"></i>
@@ -103,7 +103,7 @@
             v-model="fixedKey"
           />
         </div>
-        <hr class="horizontal dark my-sm-4" />
+        <!-- <hr class="horizontal dark my-sm-4" />
         <a
           class="btn bg-gradient-info w-100"
           href="https://www.creative-tim.com/product/vue-soft-ui-dashboard-pro-laravel"
@@ -144,7 +144,7 @@
           >
             <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
