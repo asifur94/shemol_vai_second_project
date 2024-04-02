@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-4">
     <div id="profile" class="card card-body mt-4">
-      <div v-if="profile" class="row justify-content-center align-items-center">
+      <div v-if="profile" class="row justify-content-left align-items-center">
         <div class="col-sm-auto col-4">
           <soft-avatar
             :img="pic"
@@ -13,17 +13,16 @@
         </div>
         <div class="col-sm-auto col-8 my-auto">
           <div class="h-100">
-            <h5 class="mb-1 font-weight-bolder">{{ profile.name }}</h5>
-            <p class="mb-0 font-weight-bold text-sm">{{ profile.email }}</p>
+            <h5 class="mb-1 font-weight-bolder">{{ profile.user_name }}</h5>
           </div>
         </div>
 
-        <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
+        <!-- <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
           <label class="form-check-label mb-0 me-2">
             <small id="profileVisibility">Switch to invisible</small>
           </label>
           <soft-switch id="profile" name="profileVisibility" checked />
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -35,18 +34,27 @@
           </div>
 
           <div class="card-body pt-0">
-            <div class="row mb-3">
-              <label class="form-label">Name</label>
+            <div class="row mb-3 p-3">
+              <label class="form-label">User Name</label>
+              <input
+                  id="name"
+                  v-model="profileChange.user_name"
+                  type="text"
+                  placeholder="User Name"
+                  class="form-control" style="margin-left:10px !important;"
+              />
+
               <soft-model-input
                 id="name"
                 v-model="profileChange.name"
                 type="text"
                 placeholder="Alec"
               />
-              <validation-error :errors="apiValidationErrors.name" />
+
+              <validation-error :errors="apiValidationErrors.user_name" />
             </div>
 
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
               <label class="form-label mt-2">Email</label>
               <soft-model-input
                 id="email"
@@ -55,7 +63,7 @@
                 placeholder="example@email.com"
               />
               <validation-error :errors="apiValidationErrors.email" />
-            </div>
+            </div> -->
 
             <soft-button
               class="float-end mt-6 mb-0"
@@ -74,7 +82,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <!-- <div class="col-6">
         <div id="password" class="card mt-4">
           <div class="card-header">
             <h5>Change Password</h5>
@@ -117,16 +125,16 @@
             >
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import SoftButton from "@/components/SoftButton.vue";
-import SoftSwitch from "@/components/SoftSwitch.vue";
+/* import SoftSwitch from "@/components/SoftSwitch.vue"; */
 import SoftAvatar from "@/components/SoftAvatar.vue";
-import SoftModelInput from "@/components/SoftModelInput.vue";
+/* import SoftModelInput from "@/components/SoftModelInput.vue"; */
 import ValidationError from "@/components/ValidationError.vue";
 import formMixin from "/src/mixins/form-mixin.js";
 import img from "/src/assets/img/bruce-mars.jpg";
@@ -136,9 +144,9 @@ export default {
   name: "Profile",
   components: {
     SoftButton,
-    SoftSwitch,
+    /* SoftSwitch, */
     SoftAvatar,
-    SoftModelInput,
+    /* SoftModelInput, */
     ValidationError,
   },
   mixins: [formMixin],
@@ -148,9 +156,8 @@ export default {
       password_confirmation: "",
     };
     const profileChange = {
-      name: "",
-      email: "",
-      profile_image: "",
+      user_name: "",
+      id: ""
     };
     return {
       passChange,
@@ -174,11 +181,12 @@ export default {
       await this.$store.dispatch("profile/getProfile");
       this.profileChange = { ...this.profile };
     } catch (error) {
-      try {
+      console.log(error)
+      /* try {
         await this.$store.dispatch("auth/logout");
       } finally {
         this.$router.push("/login");
-      }
+      } */
     }
   },
   methods: {

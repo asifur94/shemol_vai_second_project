@@ -3,7 +3,7 @@ export default function authHeader() {
 
   if (user) {
     return {
-      Authorization: "Bearer " + user,
+      token: "token " + user,
       "Content-Type": "application/vnd.api+json",
     };
   } else {

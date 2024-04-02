@@ -174,9 +174,9 @@ export default {
       const routeArr = this.$route.path.split("/");
       return routeArr[1];
     },
-    async logoutUser() {
+    logoutUser() {
       try {
-        await this.$store.dispatch("auth/logout");
+        this.$store.dispatch("auth/logout");
       } finally {
         this.$router.push("/login");
       }

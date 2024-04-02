@@ -1,12 +1,11 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-//const API_URL = process.env.VUE_APP_API_BASE_URL + '/';
-const API_URL = 'http://localhost:8080/';
+/* const API_URL = process.env.VUE_APP_API_BASE_URL + '/'; */
 
 export default {
   async login(user) {
-    const response = await fetch(API_URL + "api/v1/sg-5/login/v1/", {
+    const response = await fetch("api/v1/sg-5/login/v1/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,18 +24,18 @@ export default {
 
   async logout() {
     try {
-      await axios.post(API_URL + "logout", {}, { headers: authHeader() });
+      await axios.post("logout", {}, { headers: authHeader() });
     } finally {
       localStorage.removeItem("userF");
     }
   },
 
-  async register(user) {
+  /* async register(user) {
     const response = await axios.post(API_URL + "register", user);
     if (response.data.access_token) {
       localStorage.setItem("userF", JSON.stringify(response.data.access_token));
     }
-  },
+  }, */
 
   getCookie(name) {
     const value = `; ${document.cookie}`;
