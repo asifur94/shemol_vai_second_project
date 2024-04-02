@@ -20,6 +20,7 @@
                       type="text"
                       placeholder="User Name"
                       name="username" v-model="user.username"
+                      class="form-control"
                     />
                     <label>Password</label>
                     <input
@@ -28,6 +29,7 @@
                       placeholder="password"
                       name="password"
                       v-model="user.password"
+                      class="form-control mb-3"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>
                       Remember me

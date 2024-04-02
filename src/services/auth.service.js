@@ -2,10 +2,11 @@ import axios from "axios";
 import authHeader from "./auth-header";
 
 /* const API_URL = process.env.VUE_APP_API_BASE_URL + '/'; */
+const API_URL = 'https://ncare.io';
 
 export default {
   async login(user) {
-    const response = await fetch("api/v1/sg-5/login/v1/", {
+    const response = await fetch(API_URL+"/api/v1/sg-5/login/v1/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
