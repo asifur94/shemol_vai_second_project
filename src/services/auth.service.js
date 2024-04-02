@@ -19,6 +19,7 @@ export default {
 
     if (data.token) {
       localStorage.setItem("userF", JSON.stringify(data.token));
+      localStorage.setItem("user_data", JSON.stringify(data));
     }
   },
 
@@ -27,6 +28,7 @@ export default {
       await axios.post("logout", {}, { headers: authHeader() });
     } finally {
       localStorage.removeItem("userF");
+      localStorage.removeItem("user_data");
     }
   },
 

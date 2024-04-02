@@ -19,7 +19,8 @@
             </div>
           </div>
           <div class="px-0 pb-0 card-body">
-            <div class="table-responsive">
+            <div class="table-responsive p-12" v-if="loader">Loading Data......</div>
+            <div v-else class="table-responsive">
               <table id="users-list" ref="usersList" class="table table-flush">
                 <thead class="thead-light">
                   <tr>
@@ -124,7 +125,8 @@ export default {
   },
   data() {
     return {
-        data:{}
+        data:{},
+        loader:false
     };
   },
 
@@ -141,7 +143,9 @@ export default {
       });
     },
     async getData() {
+        this.loader=true
       this.data= await oltDataPortList.getOltDataPort();
+      this.loader=false
     },
   },
 };
