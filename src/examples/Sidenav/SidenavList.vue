@@ -40,8 +40,15 @@
           </template>
         </sidenav-collapse>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <sidenav-collapse navText="User Management" :to="{ name: 'Users' }">
+          <template #icon>
+            <switches />
+          </template>
+        </sidenav-collapse>
+      </li> -->
+      <li class="nav-item">
+        <sidenav-collapse navText="Olt Data Port List" :to="{ name: 'OltDataPort' }">
           <template #icon>
             <switches />
           </template>

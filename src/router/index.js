@@ -13,6 +13,7 @@ import SendEmail from "../views/SendEmail.vue";
 import ResetPassword from "../views/ResetPassword.vue";
 import Profile from "@/views/Profile.vue";
 import Users from "../views/Users.vue";
+import OltDataPort from "../views/OltDataPort.vue";
 import store from "/src/store";
 import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
@@ -119,6 +120,11 @@ const routes = [
     path: "/users",
     name: "Users",
     component: Users,
+  },
+  {
+    path: "/olt-data-ports",
+    name: "OltDataPort",
+    component: OltDataPort,
   },
 ];
 
