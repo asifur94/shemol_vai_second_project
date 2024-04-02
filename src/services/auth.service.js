@@ -1,13 +1,25 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = process.env.VUE_APP_API_BASE_URL + '/';
+//const API_URL = process.env.VUE_APP_API_BASE_URL + '/';
+const API_URL = 'http://localhost:8080/';
 
 export default {
   async login(user) {
-    const response = await axios.post(API_URL + "login", user);
-    if (response.data.access_token) {
-      localStorage.setItem("userF", JSON.stringify(response.data.access_token));
+    const response = await fetch(API_URL + "api/v1/sg-5/login/v1/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': this.getCookie('csrftoken')
+      },
+      body: JSON.stringify(user)
+    });
+
+    const data = await response.json(); 
+
+
+    if (data.token) {
+      localStorage.setItem("userF", JSON.stringify(data.token));
     }
   },
 
@@ -25,4 +37,10 @@ export default {
       localStorage.setItem("userF", JSON.stringify(response.data.access_token));
     }
   },
+
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 };

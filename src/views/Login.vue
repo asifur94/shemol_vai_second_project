@@ -15,18 +15,19 @@
                 <div class="card-body">
                   <form @submit.prevent="handleLogin" role="form" class="text-start">
                     <label>Email</label>
-                    <soft-input
-                      id="email"
-                      type="email"
-                      placeholder="Email"
-                      name="email"
+                    <input
+                      id="username"
+                      type="text"
+                      placeholder="User Name"
+                      name="username" v-model="user.username"
                     />
                     <label>Password</label>
-                    <soft-input
+                    <input
                       id="password"
                       type="password"
-                      placeholder="Password"
+                      placeholder="password"
                       name="password"
+                      v-model="user.password"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>
                       Remember me
@@ -77,7 +78,7 @@
 </template>
 
 <script>
-import SoftInput from "@/components/SoftInput.vue";
+/* import SoftInput from "@/components/SoftInput.vue"; */
 import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
@@ -88,7 +89,7 @@ import showSwal from "/src/mixins/showSwal.js";
 export default {
   name: "SignIn",
   components: {
-    SoftInput,
+    /* SoftInput, */
     SoftSwitch,
     SoftButton,
   },
@@ -102,8 +103,8 @@ export default {
       password: yup.string().required("Password is required!"),
     });
     const user = {
-      email: "admin@jsonapi.com",
-      password: "secret",
+      username: "nuxt",
+      password: "nuxt@12345",
     };
     return {
       loading: false,
@@ -126,10 +127,8 @@ export default {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
     async handleLogin() {
       this.loading = true;
-      console.log(this.user)
       try {
-        alert(this.user)
-        //await this.$store.dispatch("auth/login", this.user);
+        await this.$store.dispatch("auth/login", this.user);
         this.$router.push("/dashboard");
       } catch (error) {
         showSwal.methods.showSwal({
