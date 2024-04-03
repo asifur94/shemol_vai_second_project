@@ -85,6 +85,8 @@ export default {
   name: "Users",
   data() {
     return {
+      sortKey: '',
+      sortOrder: 'asc', 
       data: [],
       filteredData: [],
       searchQuery: "",
@@ -101,8 +103,22 @@ export default {
       this.filteredData = this.data;
     },
     sort(key) {
+      if (this.sortKey === key) {
+        // If already sorted by the same key, reverse the sort order
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      } else {
+        // If sorting by a new key, set the sort key and reset the sort order to ascending
+        this.sortKey = key;
+        this.sortOrder = 'asc';
+      }
+
       this.filteredData.sort((a, b) => {
-        return a[key].localeCompare(b[key]);
+        const valueA = a[key] ? a[key].toString().toLowerCase() : '';
+        const valueB = b[key] ? b[key].toString().toLowerCase() : '';
+        const comparison = valueA.localeCompare(valueB);
+
+        // Apply sort order based on the current state
+        return this.sortOrder === 'asc' ? comparison : -comparison;
       });
     },
     previousPage() {
