@@ -45,6 +45,16 @@
                     </div>
                   </form>
                 </div>
+                <div class="px-1 pt-0 text-center card-footer px-lg-2">
+                  <p class="mx-auto mb-4 text-sm">
+                    Don't have an account?
+                    <router-link
+                      :to="{ name: 'Sign Up' }"
+                      class="text-success text-gradient font-weight-bold"
+                      >Sign up</router-link
+                    >
+                  </p>
+                </div>
               </div>
             </div>
           </div>

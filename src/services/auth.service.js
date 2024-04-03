@@ -30,6 +30,14 @@ export default {
     }
   },
 
+  async register(user) {
+    const response = await axios.post(API_URL + "/api/v1/sg-5/singup/v1/", user);
+    if (response.data.token) {
+      localStorage.setItem("userF", JSON.stringify(response.data.token));
+      localStorage.setItem("user_data", JSON.stringify(response.data));
+    }
+  },
+
   getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
