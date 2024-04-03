@@ -5,7 +5,7 @@ const API_URL = 'https://ncare.io';
 export default {
     async getOltDataPort() {
         const response = await axios.get(API_URL+"/api/v1/sg-5/get-Olt_data_port/", {
-            headers: {'User-ID': user.id},
+            headers: {'Authorization': user.id},
           });
         return response.data;
     },
