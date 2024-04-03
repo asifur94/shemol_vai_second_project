@@ -20,20 +20,20 @@
               <table id="users-list" class="table table-striped table-bordered">
                 <thead class="thead-light">
                   <tr>
-                     <th @click="sort('id')">Id</th>
-                    <th @click="sort('vlan_id')">Vlan ID</th>
-                    <th @click="sort('description')">Description</th>
-                    <th @click="sort('mac_address')">Mac Address</th>
-                    <th @click="sort('port_number')">Port Number</th>
-                    <th @click="sort('PPPOE_ID')">PPPOE ID</th>                    
-                    <th @click="sort('show')">Show</th>
-                    <th @click="sort('distance')">Distance</th>
-                    <th @click="sort('last_dereg_reason')">Last Dereg Reason</th>
-                    <th @click="sort('alive_time')">Alive Time</th>
-                    <th @click="sort('olt_connect')">Olt Connect</th>
-                    <th @click="sort('status')">Status</th>
-                    <th @click="sort('last_update')">Last Update</th>
-                    <th @click="sort('next_update_time')">Next Update Time</th>
+                     <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }">Id <span class="sort-icon"> </span></th>
+                    <th @click="sort('vlan_id')" :class="{ 'asc': sortKey === 'vlan_id' && sortOrder === 'asc', 'desc': sortKey === 'vlan_id' && sortOrder === 'desc' }">Vlan ID <span class="sort-icon"> </span></th>
+                    <th @click="sort('description')" :class="{ 'asc': sortKey === 'description' && sortOrder === 'asc', 'desc': sortKey === 'description' && sortOrder === 'desc' }">Description <span class="sort-icon"> </span></th>
+                    <th @click="sort('mac_address')" :class="{ 'asc': sortKey === 'mac_address' && sortOrder === 'asc', 'desc': sortKey === 'mac_address' && sortOrder === 'desc' }">Mac Address <span class="sort-icon"> </span></th>
+                    <th @click="sort('port_number')" :class="{ 'asc': sortKey === 'port_number' && sortOrder === 'asc', 'desc': sortKey === 'port_number' && sortOrder === 'desc' }">Port Number <span class="sort-icon"> </span></th>
+                    <th @click="sort('PPPOE_ID')" :class="{ 'asc': sortKey === 'PPPOE_ID' && sortOrder === 'asc', 'desc': sortKey === 'PPPOE_ID' && sortOrder === 'desc' }">PPPOE ID <span class="sort-icon"> </span></th>                    
+                    <th @click="sort('show')" :class="{ 'asc': sortKey === 'show' && sortOrder === 'asc', 'desc': sortKey === 'show' && sortOrder === 'desc' }">Show <span class="sort-icon"> </span></th>
+                    <th @click="sort('distance')" :class="{ 'asc': sortKey === 'distance' && sortOrder === 'asc', 'desc': sortKey === 'distance' && sortOrder === 'desc' }">Distance <span class="sort-icon"> </span></th>
+                    <th @click="sort('last_dereg_reason')" :class="{ 'asc': sortKey === 'last_dereg_reason' && sortOrder === 'asc', 'desc': sortKey === 'last_dereg_reason' && sortOrder === 'desc' }">Last Dereg Reason <span class="sort-icon"> </span></th>
+                    <th @click="sort('alive_time')" :class="{ 'asc': sortKey === 'alive_time' && sortOrder === 'asc', 'desc': sortKey === 'alive_time' && sortOrder === 'desc' }">Alive Time <span class="sort-icon"> </span></th>
+                    <th @click="sort('olt_connect')" :class="{ 'asc': sortKey === 'olt_connect' && sortOrder === 'asc', 'desc': sortKey === 'olt_connect' && sortOrder === 'desc' }">Olt Connect <span class="sort-icon"> </span></th>
+                    <th @click="sort('status')" :class="{ 'asc': sortKey === 'status' && sortOrder === 'asc', 'desc': sortKey === 'status' && sortOrder === 'desc' }">Status <span class="sort-icon"> </span></th>
+                    <th @click="sort('last_update')" :class="{ 'asc': sortKey === 'last_update' && sortOrder === 'asc', 'desc': sortKey === 'last_update' && sortOrder === 'desc' }">Last Update <span class="sort-icon"> </span></th>
+                    <th @click="sort('next_update_time')" :class="{ 'asc': sortKey === 'next_update_time' && sortOrder === 'asc', 'desc': sortKey === 'next_update_time' && sortOrder === 'desc' }">Next Update Time <span class="sort-icon"> </span></th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -67,9 +67,9 @@
               </table>
             </div>
             <div class="pagination-container">
-                  <button class="btn btn-sm btn-success ml-3 mt-3" @click="previousPage" :disabled="currentPage === 1">Previous</button>
+                  <button class="btn btn-sm btn-success mx-3 mt-3" @click="previousPage" :disabled="currentPage === 1">Previous</button>
                   <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
-                  <button class="btn btn-sm btn-success mt-3" @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+                  <button class="btn btn-sm btn-success mx-3 mt-3" @click="nextPage" :disabled="currentPage === totalPages">Next</button>
               </div>
           </div>
         </div>
@@ -161,5 +161,16 @@ export default {
 <style>
 td {
   padding: 12px 24px !important;
+}
+.sort-icon {
+  margin-left: 5px;
+}
+
+.asc::after {
+  content: "▲";
+}
+
+.desc::after {
+  content: "▼";
 }
 </style>
