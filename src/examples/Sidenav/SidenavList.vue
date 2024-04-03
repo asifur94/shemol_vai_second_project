@@ -182,11 +182,7 @@ export default {
       return routeArr[1];
     },
     logoutUser() {
-      try {
         this.$store.dispatch("auth/logout");
-      } finally {
-        this.$router.push("/login");
-      }
     },
   },
 };
