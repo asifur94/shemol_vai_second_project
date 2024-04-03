@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = 'https://ncare.io';
+const API_URL = process.env.VUE_APP_API_BASE_URL;
 let token = JSON.parse(localStorage.getItem("userF"));
 export default {
   async getProfile() {

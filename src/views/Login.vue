@@ -45,31 +45,6 @@
                     </div>
                   </form>
                 </div>
-                <div class="px-1 pt-0 text-center card-footer px-lg-2">
-                  <p class="mx-auto mb-4 text-sm">
-                    Don't have an account?
-                    <router-link
-                      :to="{ name: 'Sign Up' }"
-                      class="text-success text-gradient font-weight-bold"
-                      >Sign up</router-link
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div
-                class="top-0 oblique position-absolute h-100 d-md-block d-none me-n8"
-              >
-                <div
-                  class="bg-cover oblique-image position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"
-                  :style="{
-                    backgroundImage:
-                      'url(' +
-                      require('@/assets/img/curved-images/curved9.jpg') +
-                      ')',
-                  }"
-                ></div>
               </div>
             </div>
           </div>

@@ -1,8 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-/* const API_URL = process.env.VUE_APP_API_BASE_URL + '/'; */
-const API_URL = 'https://ncare.io';
+const API_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   async login(user) {
@@ -14,9 +13,7 @@ export default {
       },
       body: JSON.stringify(user)
     });
-
     const data = await response.json(); 
-
 
     if (data.token) {
       localStorage.setItem("userF", JSON.stringify(data.token));
@@ -32,13 +29,6 @@ export default {
       localStorage.removeItem("user_data");
     }
   },
-
-  /* async register(user) {
-    const response = await axios.post(API_URL + "register", user);
-    if (response.data.access_token) {
-      localStorage.setItem("userF", JSON.stringify(response.data.access_token));
-    }
-  }, */
 
   getCookie(name) {
     const value = `; ${document.cookie}`;
