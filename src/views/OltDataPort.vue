@@ -20,7 +20,7 @@
               <table id="users-list" class="table table-striped table-bordered">
                 <thead class="thead-light">
                   <tr>
-                     <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }">Id <span class="sort-icon"> </span></th>
+                     <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }">ID <span class="sort-icon"> </span></th>
                     <th @click="sort('vlan_id')" :class="{ 'asc': sortKey === 'vlan_id' && sortOrder === 'asc', 'desc': sortKey === 'vlan_id' && sortOrder === 'desc' }">Vlan ID <span class="sort-icon"> </span></th>
                     <th @click="sort('description')" :class="{ 'asc': sortKey === 'description' && sortOrder === 'asc', 'desc': sortKey === 'description' && sortOrder === 'desc' }">Description <span class="sort-icon"> </span></th>
                     <th @click="sort('mac_address')" :class="{ 'asc': sortKey === 'mac_address' && sortOrder === 'asc', 'desc': sortKey === 'mac_address' && sortOrder === 'desc' }">Mac Address <span class="sort-icon"> </span></th>
