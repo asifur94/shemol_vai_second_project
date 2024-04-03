@@ -5,74 +5,60 @@
         <div class="card">
           <!-- Card header -->
           <div class="pb-0 card-header">
-            <div class="d-lg-flex">
+            <div class="d-lg-flex justify-content-between mx-3">
               <div>
                 <h5 class="mb-0">Olt Data Port List</h5>
               </div>
-              <!-- <div class="my-auto mt-4 ms-auto mt-lg-0">
-                <div class="my-auto ms-auto">
-                  <a @click="alert" class="mb-0 btn bg-gradient-success btn-sm"
-                    >+&nbsp; New User</a
-                  >
-                </div>
-              </div> -->
+              <div >
+                <input type="text" v-model="searchQuery" class="form-control" placeholder="Search...">
+            </div>
             </div>
           </div>
+            
           <div class="px-0 pb-0 card-body">
-            <div class="table-responsive p-12" v-if="loader">Loading Data......</div>
-            <div v-else class="table-responsive">
-              <table id="users-list" ref="usersList" class="table table-flush">
+            <div class="table-responsive">
+              <table id="users-list" class="table table-striped table-bordered">
                 <thead class="thead-light">
                   <tr>
-                    <th>Id</th>
-                    <th>Vlan ID</th>
-                    <th>Description</th>
-                    <th>Mac Address</th>
-                    <th>Port Number</th>
-                    <th>PPPOE ID</th>                    
-                    <th>Show</th>
-                    <th>Distance</th>
-                    <th>Last Dereg Reason</th>
-                    <th>Alive Time</th>
-                    <th>Olt Connect</th>
-                    <th>Status</th>
-                    <th>Last Update</th>
-                    <th>Next Update Time</th>
+                     <th @click="sort('id')">Id</th>
+                    <th @click="sort('vlan_id')">Vlan ID</th>
+                    <th @click="sort('description')">Description</th>
+                    <th @click="sort('mac_address')">Mac Address</th>
+                    <th @click="sort('port_number')">Port Number</th>
+                    <th @click="sort('PPPOE_ID')">PPPOE ID</th>                    
+                    <th @click="sort('show')">Show</th>
+                    <th @click="sort('distance')">Distance</th>
+                    <th @click="sort('last_dereg_reason')">Last Dereg Reason</th>
+                    <th @click="sort('alive_time')">Alive Time</th>
+                    <th @click="sort('olt_connect')">Olt Connect</th>
+                    <th @click="sort('status')">Status</th>
+                    <th @click="sort('last_update')">Last Update</th>
+                    <th @click="sort('next_update_time')">Next Update Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody class="text-sm">
-                  <tr v-for="(item,index) in data" :key="index">
-                    <td>{{item.id?? '...'}}</td>
-                    <td>{{item.vlan_id ?? '...'}}</td>
-                    <td>{{item.description ?? '...'}}</td>
-                    <td>{{item.mac_address ?? '...'}}</td>
-                    <td>{{item.port_number ?? '...'}}</td>
-                    <td>{{item.PPPOE_ID ?? '...'}}</td>
-                    <td>{{item.show ?? '...'}}</td>
-                    <td>{{item.distance ?? '...'}}</td>
-                    <td>{{item.last_dereg_reason ?? '...'}}</td>
-                    <td>{{item.alive_time ?? '...'}}</td>
-                    <td>{{item.olt_connect ?? '...'}}</td>
-                    <td>{{item.status ?? '...'}}</td>
-                    <td>{{item.last_update ?? '...'}}</td>
-                    <td>{{item.next_update_time ?? '...'}}</td>
+                  <!-- Use paginatedData instead of filteredData -->
+                  <tr v-for="(item,index) in paginatedData" :key="index">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.vlan_id }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.mac_address }}</td>
+                    <td>{{ item.port_number }}</td>
+                    <td>{{ item.PPPOE_ID }}</td>
+                    <td>{{ item.show }}</td>
+                    <td>{{ item.distance }}</td>
+                    <td>{{ item.last_dereg_reason }}</td>
+                    <td>{{ item.alive_time }}</td>
+                    <td>{{ item.olt_connect }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.last_update }}</td>
+                    <td>{{ item.next_update_time }}</td>
                     <td>
-                      <a
-                        @click="alert"
-                        id="1"
-                        class="actionButton cursor-pointer me-3"
-                        data-bs-toggle="tooltip"
-                        title="Edit User"
-                      >
-                        <i class="fas fa-user-edit text-secondary"></i> </a
-                      ><a
-                        @click="alert"
-                        id="2"
-                        class="actionButton deleteButton cursor-pointer"
-                        data-bs-toggle="tooltip"
-                        title="Delete User"
-                      >
+                      <a @click="editUser(item)" class="actionButton cursor-pointer me-3" data-bs-toggle="tooltip" title="Edit User">
+                        <i class="fas fa-user-edit text-secondary"></i>
+                      </a>
+                      <a @click="deleteUser(item)" class="actionButton deleteButton cursor-pointer" data-bs-toggle="tooltip" title="Delete User">
                         <i class="fas fa-trash text-secondary"></i>
                       </a>
                     </td>
@@ -80,34 +66,12 @@
                 </tbody>
               </table>
             </div>
+            <div class="pagination-container">
+                  <button class="btn btn-sm btn-success ml-3 mt-3" @click="previousPage" :disabled="currentPage === 1">Previous</button>
+                  <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+                  <button class="btn btn-sm btn-success mt-3" @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+              </div>
           </div>
-          <!-- <div
-            class="d-flex justify-content-center justify-content-sm-between flex-wrap"
-            style="padding: 24px 24px 0px"
-          >
-            <div>
-              <p>Showing 1 to 1 of 1 entries</p>
-            </div>
-            <ul class="pagination pagination-success pagination-md">
-              <li class="page-item prev-page disabled">
-                <a class="page-link" aria-label="Previous">
-                  <span aria-hidden="true"
-                    ><i class="fa fa-angle-left" aria-hidden="true"></i
-                  ></span>
-                </a>
-              </li>
-              <li class="page-item disabled active">
-                <a class="page-link" style="color: white">1</a>
-              </li>
-              <li class="page-item next-page disabled">
-                <a class="page-link" aria-label="Next">
-                  <span aria-hidden="true"
-                    ><i class="fa fa-angle-right" aria-hidden="true"></i
-                  ></span>
-                </a>
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </div>
@@ -115,41 +79,69 @@
 </template>
 
 <script>
-import showSwal from "/src/mixins/showSwal.js";
 import oltDataPortList from "../services/oltDataPortList.service";
 
 export default {
   name: "Users",
-  components: {
-    //BasePagination,
-  },
   data() {
     return {
-        data:{},
-        loader:false
+      data: [],
+      filteredData: [],
+      searchQuery: "",
+      currentPage: 1,
+      itemsPerPage: 20
     };
   },
-
   async mounted() {
-      this.getData()
+    await this.getData();
   },
-
   methods: {
-    alert() {
-      showSwal.methods.showSwal({
-        type: "error",
-        message: "This is a PRO feature.",
-        width: 400,
+    async getData() {
+      this.data = await oltDataPortList.getOltDataPort();
+      this.filteredData = this.data;
+    },
+    sort(key) {
+      this.filteredData.sort((a, b) => {
+        return a[key].localeCompare(b[key]);
       });
     },
-    async getData() {
-        this.loader=true
-      this.data= await oltDataPortList.getOltDataPort();
-      this.loader=false
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
     },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    }
   },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.filteredData.length / this.itemsPerPage);
+    },
+    paginatedData() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
+    }
+  },
+  watch: {
+    searchQuery(newValue) {
+      this.filteredData = this.data.filter(item => {
+        for (let key in item) {
+          if (String(item[key]).toLowerCase().includes(newValue.toLowerCase())) {
+            return true;
+          }
+        }
+        return false;
+      });
+      // Reset currentPage when searchQuery changes
+      this.currentPage = 1;
+    }
+  }
 };
 </script>
+
 <style>
 td {
   padding: 12px 24px !important;
