@@ -12,14 +12,18 @@
                             </div>
                             <div class="d-flex gap-3">
                                 <div class="flex-grow-1">
+                                    <router-link :to="{ name: 'AddOlt' }">
+                                        <button class="btn btn-success">Add New</button>
+                                    </router-link>
+                                </div>
+                                <div class="flex-grow-1">
+                                    
                                     <input type="text" v-model="searchQuery" class="form-control"
                                         placeholder="Search...">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="px-0 pb-0 card-body">
                         <div class="table-responsive">
                             <div class="card mb-4">
@@ -27,24 +31,6 @@
                                     <div class="table-responsive p-0">
                                         <table class="table align-items-center mb-0">
                                             <thead>
-                                                
-                                                    <!-- "id": 9,
-                                                    "Mikrotik_ip": "172.16.205.13",
-                                                    "m_username": "nuxt",
-                                                    "m_password": "nuxt@12345",
-                                                    "m_port": 9000,
-                                                    "olt_ip": "10.20.30.2",
-                                                    "olt_username": "admin",
-                                                    "olt_password": "admin",
-                                                    "olt_port": "23",
-                                                    "description": "",
-                                                    "show": true,
-                                                    "olt_name": "EPON-4PORT",
-                                                    "next_update_time": null,
-                                                    "login_user": 1,
-                                                    "olt_billing": null,
-                                                    "olt_modes": 1,
-                                                    "olt_brands": 1 -->
                                                 <tr>
                                                     <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }" 
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">

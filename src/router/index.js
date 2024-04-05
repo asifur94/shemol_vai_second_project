@@ -15,6 +15,7 @@ import Profile from "@/views/Profile.vue";
 import Users from "../views/Users.vue";
 import OltDataPort from "../views/OltDataPort.vue";
 import OltList from "../views/OltList.vue";
+import AddOlt from "../views/AddOlt.vue";
 import store from "/src/store";
 import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
@@ -134,6 +135,11 @@ const routes = [
     path: "/olt-list",
     name: "OltList",
     component: OltList,
+  },
+  {
+    path: "/add-olt",
+    name: "AddOlt",
+    component: AddOlt,
   },
 ];
 
