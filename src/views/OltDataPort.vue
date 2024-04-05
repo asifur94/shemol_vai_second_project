@@ -5,15 +5,36 @@
         <div class="card">
           <!-- Card header -->
           <div class="pb-0 card-header">
-            <div class="d-lg-flex justify-content-between mx-3">
-              <div>
-                <h5 class="mb-0">Olt Data Port List</h5>
-              </div>
-              <div >
-                <input type="text" v-model="searchQuery" class="form-control" placeholder="Search...">
-            </div>
-            </div>
-          </div>
+    <div class="d-lg-flex justify-content-between mx-3">
+        <div>
+            <h5>Olt Data Port List</h5>
+        </div>
+        <div class="d-flex gap-3">
+   <div class="flex mx-1">
+    <!-- <label for="filter">OLT</label> -->
+    <div class="d-flex grid grid-cols-2 gap-3">
+        <select @change="handleOltData(selected_olt)" v-model="selected_olt" class="form-control" name="filter" id="filter">
+            <option   value="" selected disabled hidden>OLT</option>
+            <option   value="">All</option>
+            <option v-for="item in filter_port_olt"  :key="item.OLT_NAME" :value="item.OLT_NAME">{{item.OLT_NAME}}</option>
+        </select>
+        <select @change="handlePortData(selected_port)" v-model="selected_port" v-if="port_olt[0]" class="form-control" name="filter" id="filter">
+            <option value="" selected disabled hidden>PORT</option>
+            <option value="">All</option>
+            <option v-for="item in port_olt[0]?.PORT" :key="item" :value="item">{{ item }}</option>
+        </select>
+
+    </div>
+</div>
+
+    <div class="flex-grow-1">
+        <input type="text" v-model="searchQuery" class="form-control" placeholder="Search...">
+    </div>
+</div>
+
+    </div>
+</div>
+
             
           <div class="px-0 pb-0 card-body">
             <div class="table-responsive">
@@ -89,6 +110,10 @@ export default {
       sortOrder: 'asc', 
       data: [],
       filteredData: [],
+      filter_port_olt: [],
+      port_olt: [],
+      selected_olt:'',
+      selected_port:'',
       searchQuery: "",
       currentPage: 1,
       itemsPerPage: 20
@@ -98,9 +123,36 @@ export default {
     await this.getData();
   },
   methods: {
+    handleOltData(olt) {
+      this.filteredData = this.data.filter(item => {
+        for (let key in item) {
+          if (String(item[key]).toLowerCase().includes(olt.toLowerCase())) {
+            return true;
+          }
+        }
+        return false;
+      });
+      this.currentPage = 1;
+
+      this.port_olt = this.filter_port_olt.filter(item => item.OLT_NAME === olt);
+    },
+    handlePortData(port) {
+      this.filteredData = this.data.filter(item => {
+        for (let key in item) {
+          if (String(item[key]).toLowerCase().includes(port.toLowerCase())) {
+            return true;
+          }
+        }
+        return false;
+      });
+      this.currentPage = 1;
+    },
     async getData() {
-      this.data = await oltDataPortList.getOltDataPort();
-      this.filteredData = this.data;
+      const response = await oltDataPortList.getOltDataPort();
+
+      this.data = response.olt_all_data;
+      this.filter_port_olt = response.filter_port_olt;
+      this.filteredData = response.olt_all_data;
     },
     sort(key) {
       if (this.sortKey === key) {
