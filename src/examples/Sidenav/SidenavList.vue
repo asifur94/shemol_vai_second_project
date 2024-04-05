@@ -55,7 +55,7 @@
         </sidenav-collapse>
       </li>
       <li class="nav-item">
-        <sidenav-collapse navText="Data List" :to="{ name: 'DataList' }">
+        <sidenav-collapse navText="Olt List" :to="{ name: 'OltList' }">
           <template #icon>
             <office />
           </template>

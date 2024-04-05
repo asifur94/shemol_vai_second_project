@@ -14,7 +14,7 @@ import ResetPassword from "../views/ResetPassword.vue";
 import Profile from "@/views/Profile.vue";
 import Users from "../views/Users.vue";
 import OltDataPort from "../views/OltDataPort.vue";
-import DataList from "../views/DataList.vue";
+import OltList from "../views/OltList.vue";
 import store from "/src/store";
 import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
@@ -131,9 +131,9 @@ const routes = [
     component: OltDataPort,
   },
   {
-    path: "/data-list",
-    name: "DataList",
-    component: DataList,
+    path: "/olt-list",
+    name: "OltList",
+    component: OltList,
   },
 ];
 
