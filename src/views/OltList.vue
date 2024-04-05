@@ -7,7 +7,7 @@
                     <div class="pb-0 card-header">
                         <div class="d-lg-flex justify-content-between mx-3">
                             <div>
-                                <h5> Data List <span class="badge">{{filteredData.length}}</span></h5>
+                                <h5> Olt List <span class="badge">{{filteredData.length}}</span></h5>
 
                             </div>
                             <div class="d-flex gap-3">
