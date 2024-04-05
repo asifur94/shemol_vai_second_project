@@ -139,9 +139,9 @@
               </select>
             </div>
           </div>
-
+          
           <button
-            class="float-end mt-6 mb-0 btn btn-success"
+            class="float-end mb-0 btn btn-success"
             color="dark"
             variant="gradient"
             size="sm"
@@ -149,6 +149,16 @@
           >
             Add Olt
           </button>
+            <router-link :to="{name:'OltList'}">
+          <button
+            class="float-end mx-3 mb-0 btn btn-secondary"
+            color="dark"
+            variant="gradient"
+            size="sm"
+          >
+            Cancel
+          </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -157,6 +167,7 @@
 
 <script>
 import addOlt from "../services/add-olt.service";
+import showSwal from "../mixins/showSwal.js";
 export default {
   data() {
     return {
@@ -180,10 +191,23 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      // Handle form submission here
+    async submitForm() {
       console.log("Form submitted with data:", this.formData);
-      const response =  addOlt.addData(this.formData);
+      try {
+        const response = await addOlt.addData(this.formData);
+        showSwal.methods.showSwal({
+          type: "success",
+            message: "Olt Created Successfully!",
+        });
+        this.$router.push("/olt-list");
+        } catch (error) {
+        console.error("Error adding Olt:", error);
+        showSwal.methods.showSwal({
+          type: "error",
+            message: "Failed to Create Olt!",
+        });
+        }
+
     }
   }
 };
