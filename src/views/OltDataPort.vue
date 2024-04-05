@@ -7,32 +7,29 @@
           <div class="pb-0 card-header">
     <div class="d-lg-flex justify-content-between mx-3">
         <div>
-            <h5>Olt Data Port List</h5>
+            <h5> Olt Data Port List <span class="badge">{{filteredData.length}}</span></h5>
+
         </div>
         <div class="d-flex gap-3">
-   <div class="flex mx-1">
-    <!-- <label for="filter">OLT</label> -->
-    <div class="d-flex grid grid-cols-2 gap-3">
-        <select @change="handleOltData(selected_olt)" v-model="selected_olt" class="form-control" name="filter" id="filter">
-            <option   value="" selected disabled hidden>OLT</option>
-            <option   value="">All</option>
-            <option v-for="item in filter_port_olt"  :key="item.OLT_NAME" :value="item.OLT_NAME">{{item.OLT_NAME}}</option>
-        </select>
-        <select @change="handlePortData(selected_port)" v-model="selected_port" v-if="port_olt[0]" class="form-control" name="filter" id="filter">
-            <option value="" selected disabled hidden>PORT</option>
-            <option value="">All</option>
-            <option v-for="item in port_olt[0]?.PORT" :key="item" :value="item">{{ item }}</option>
-        </select>
-
+        <div class="flex mx-1 justify-content-around">
+                <div class="d-flex grid grid-cols-2 gap-3">
+                    <select @change="handleOltData(selected_olt)" v-model="selected_olt" class="form-control" name="filter" id="filter">
+                        <option   value="" selected disabled hidden>OLT</option>
+                        <option   value="">All</option>
+                        <option v-for="item in filter_port_olt"  :key="item.OLT_NAME" :value="item.OLT_NAME">{{item.OLT_NAME}}</option>
+                    </select>
+                    <select @change="handlePortData(selected_port)" v-model="selected_port" v-if="port_olt[0]" class="form-control" name="filter" id="filter">
+                        <option value="" selected disabled hidden>PORT</option>
+                        <option value="">All</option>
+                        <option v-for="item in port_olt[0]?.PORT" :key="item" :value="item">{{ item }}</option>
+                    </select>
+                </div>
+        </div>
+        <div class="flex-grow-1">
+            <input type="text" v-model="searchQuery" class="form-control" placeholder="Search...">
+        </div>
     </div>
-</div>
-
-    <div class="flex-grow-1">
-        <input type="text" v-model="searchQuery" class="form-control" placeholder="Search...">
-    </div>
-</div>
-
-    </div>
+  </div>
 </div>
 
             
@@ -225,4 +222,20 @@ td {
 .desc::after {
   content: "▼";
 }
+
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 50%;
+    background-color: #40C133; /* or any other color you prefer */
+    color: #fff; /* text color */
+}
+
 </style>
