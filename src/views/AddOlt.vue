@@ -194,7 +194,7 @@ export default {
     async submitForm() {
       console.log("Form submitted with data:", this.formData);
       try {
-        const response = await addOlt.addData(this.formData);
+        await addOlt.addData(this.formData);
         showSwal.methods.showSwal({
           type: "success",
             message: "Olt Created Successfully!",
