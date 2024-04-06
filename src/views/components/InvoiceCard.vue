@@ -34,7 +34,7 @@
           </div>
           <div class="d-flex align-items-center text-sm">
            <span> Tk {{item.total_amount}}</span>
-              <soft-badge class="ms-3 cursor-pointer" v-if="item.is_paid == false" color="dark" variant="gradient">
+              <soft-badge @click="getPay(item.invoice_number)" class="ms-3 cursor-pointer" v-if="item.is_paid == false" color="dark" variant="gradient">
               Pay
             </soft-badge>
             <button v-else class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
@@ -53,6 +53,7 @@
 import SoftBadge from "@/components/SoftBadge.vue";
 //Service 
 import invoiceList from "../../services/get-user-invoice-list.service";
+import pay from "../../services/get-pay-bill.service";
 
 export default {
   name: "InvoiceCard",
@@ -78,6 +79,12 @@ export default {
   },
 
   methods: {
+    async getPay(Invoice_id){
+        let response = await pay.getPayBill(Invoice_id)
+        if(response){
+          window.open(response.bkashURL);
+        }
+      },
       async getData() {
           const response = await invoiceList.getUserInvoiceDataList();
           this.data = response;
