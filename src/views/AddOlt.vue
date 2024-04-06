@@ -112,10 +112,10 @@
               </select>
             </div>
             <div class="col-6 mb-3">
-              <label class="form-label">Status</label>
-              <select v-model="formData.show" class="form-control" name="" id="">
-                  <option value="true">Show</option>
-                  <option value="false">Hide</option>
+              <label class="form-label">Billing</label>
+              <select v-model="formData.olt_billing" class="form-control required" name="" id="">
+                  <option value="" selected disabled hidden>Select</option>
+                  <option v-for="(item,index) in olt_data" :key="index" :value="item.id">{{item.olt_pack}}</option>
               </select>
             </div>
           </div>
@@ -148,11 +148,13 @@
 <script>
 import addOlt from "../services/add-olt.service";
 import oltCatListData from "../services/olt-cat-list.service";
+import NewOltDataFormListData from "../services/get-newolt-get-data-form.service";
 import showSwal from "../mixins/showSwal.js";
 export default {
   data() {
     return {
       cat_data : [],
+      olt_data : [],
       formData: {
         Mikrotik_ip: "",
         m_username: "",
@@ -167,12 +169,14 @@ export default {
         olt_name: "",
         login_user: "",
         olt_modes: "",
-        olt_brands: ""
+        olt_brands: "",
+        olt_billing: ""
       }
     };
   },
   mounted(){
     this.getData();
+    this.getNewOltDataForm();
     let user= JSON.parse(localStorage.getItem("user_data"));
     console.log(user.id)
     this.formData.login_user=user.id
@@ -181,12 +185,21 @@ export default {
     async submitForm() {
       console.log("Form submitted with data:", this.formData);
       try {
-        await addOlt.addData(this.formData);
-        showSwal.methods.showSwal({
-          type: "success",
-            message: "Olt Created Successfully!",
-        });
-        this.$router.push("/olt-list");
+          if(this.formData.olt_billing && this.formData.olt_billing != '' && this.formData.olt_billing != null){
+            await addOlt.addData(this.formData);
+            showSwal.methods.showSwal({
+              type: "success",
+                message: "Olt Created Successfully!",
+            });
+            this.$router.push("/olt-list");
+          }else{
+            showSwal.methods.showSwal({
+            type: "error",
+              message: "Please Provide Billing Information",
+          });
+        }
+        
+        
         } catch (error) {
         console.error("Error adding Olt:", error);
         showSwal.methods.showSwal({
@@ -199,6 +212,10 @@ export default {
     async getData() {
                 const response = await oltCatListData.getCatListData();
                 this.cat_data = response;
+            },
+    async getNewOltDataForm() {
+                const response = await NewOltDataFormListData.getNewOltDataFormListData();
+                this.olt_data = response;
             },
   }
 };

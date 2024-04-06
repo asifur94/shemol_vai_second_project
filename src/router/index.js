@@ -53,8 +53,8 @@ const routes = [
     component: Tables,
   },
   {
-    path: "/billing",
-    name: "Billing",
+    path: "/package-list",
+    name: "Package List",
     component: Billing,
   },
   {
