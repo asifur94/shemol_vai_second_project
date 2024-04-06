@@ -80,6 +80,26 @@
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                         Next Update Time
                                                     <span class="sort-icon"> </span></th>
+                                                    <th @click="sort('output_cpu')" :class="{ 'asc': sortKey === 'output_cpu' && sortOrder === 'asc', 'desc': sortKey === 'output_cpu' && sortOrder === 'desc' }"
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Output Cpu
+                                                    <span class="sort-icon"> </span></th>
+                                                    <th @click="sort('output_mem')" :class="{ 'asc': sortKey === 'output_mem' && sortOrder === 'asc', 'desc': sortKey === 'output_mem' && sortOrder === 'desc' }"
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Output Mem
+                                                    <span class="sort-icon"> </span></th>
+                                                    <th @click="sort('system_name')" :class="{ 'asc': sortKey === 'system_name' && sortOrder === 'asc', 'desc': sortKey === 'system_name' && sortOrder === 'desc' }"
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        System Name
+                                                    <span class="sort-icon"> </span></th>
+                                                    <th @click="sort('uptime')" :class="{ 'asc': sortKey === 'uptime' && sortOrder === 'asc', 'desc': sortKey === 'uptime' && sortOrder === 'desc' }"
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Uptime
+                                                    <span class="sort-icon"> </span></th>
+                                                    <th @click="sort('another_mem')" :class="{ 'asc': sortKey === 'another_mem' && sortOrder === 'asc', 'desc': sortKey === 'another_mem' && sortOrder === 'desc' }"
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Another Mem
+                                                    <span class="sort-icon"> </span></th>
                                                     <th @click="sort('login_user')" :class="{ 'asc': sortKey === 'login_user' && sortOrder === 'asc', 'desc': sortKey === 'login_user' && sortOrder === 'desc' }"
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                         Login User
@@ -151,6 +171,26 @@
                                                     <td class="align-middle text-center">
                                                         <span
                                                             class="text-secondary text-xs font-weight-bold">{{data.next_update_time}}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{data.output_cpu}}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{data.output_mem}}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{data.system_name}}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{data.uptime}}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{data.another_mem}}</span>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <soft-badge color="success" variant="gradient" size="sm">{{data.login_user}}
