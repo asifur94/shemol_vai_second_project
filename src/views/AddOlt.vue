@@ -37,7 +37,7 @@
               <input
                 v-model="formData.m_port"
                 type="text"
-                placeholder="Mikrotik Password"
+                placeholder="Mikrotik Port"
                 class="form-control"
               />
             </div>
@@ -82,7 +82,7 @@
               <input
                 v-model="formData.olt_port"
                 type="text"
-                placeholder="OLT Password"
+                placeholder="OLT Port"
                 class="form-control"
               />
             </div>
@@ -95,41 +95,21 @@
                 class="form-control"
               />
             </div>
-            
-            <div class="col-6 mb-3">
-              <label class="form-label">Next Update Time </label>
-              <input
-                v-model="formData.next_update_time"
-                type="datetime-local" id="myDateTime"
-                class="form-control"
-              />
-            </div>
-            <div class="col-6 mb-3">
-              <label class="form-label">Login User</label>
-              <input
-                v-model="formData.login_user"
-                type="text"
-                placeholder="OLT Name"
-                class="form-control"
-              />
-            </div>
+
             <div class="col-6 mb-3">
               <label class="form-label">Olt Modes</label>
-              <input
-                v-model="formData.olt_modes"
-                type="text"
-                placeholder="OLT Name"
-                class="form-control"
-              />
+              <select v-model="formData.olt_modes" name="" id="" class="form-control">
+                <option value="" selected disabled hidden>Select Olt Mode</option>
+                <option v-for="(data,index ) in cat_data.olt_mode" :key="index" :value="data.id">{{data.olt_model}}</option>
+              </select>
+              
             </div>
             <div class="col-6 mb-3">
               <label class="form-label">Olt Brands</label>
-              <input
-                v-model="formData.olt_brands"
-                type="text"
-                placeholder="OLT Name"
-                class="form-control"
-              />
+              <select v-model="formData.olt_brands" name="" id="" class="form-control">
+                <option value="" selected disabled hidden>Select Olt Brand</option>
+                <option v-for="(data,index ) in cat_data.olt_brand" :key="index" :value="data.id">{{data.olt_brand_name}}</option>
+              </select>
             </div>
             <div class="col-6 mb-3">
               <label class="form-label">Status</label>
@@ -167,10 +147,12 @@
 
 <script>
 import addOlt from "../services/add-olt.service";
+import oltCatListData from "../services/olt-cat-list.service";
 import showSwal from "../mixins/showSwal.js";
 export default {
   data() {
     return {
+      cat_data : [],
       formData: {
         Mikrotik_ip: "",
         m_username: "",
@@ -183,12 +165,17 @@ export default {
         description: "",
         show: true,
         olt_name: "",
-        next_update_time: "",
         login_user: "",
         olt_modes: "",
         olt_brands: ""
       }
     };
+  },
+  mounted(){
+    this.getData();
+    let user= JSON.parse(localStorage.getItem("user_data"));
+    console.log(user.id)
+    this.formData.login_user=user.id
   },
   methods: {
     async submitForm() {
@@ -207,8 +194,12 @@ export default {
             message: "Failed to Create Olt!",
         });
         }
+    },
 
-    }
+    async getData() {
+                const response = await oltCatListData.getCatListData();
+                this.cat_data = response;
+            },
   }
 };
 </script>

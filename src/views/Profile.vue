@@ -182,11 +182,6 @@ export default {
       this.profileChange = { ...this.profile };
     } catch (error) {
       console.log(error)
-      /* try {
-        await this.$store.dispatch("auth/logout");
-      } finally {
-        this.$router.push("/login");
-      } */
     }
   },
   methods: {

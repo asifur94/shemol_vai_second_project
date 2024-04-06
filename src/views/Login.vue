@@ -116,6 +116,7 @@ export default {
       this.loading = true;
       try {
         await this.$store.dispatch("auth/login", this.user);
+        await this.$store.dispatch("profile/getProfile");
         this.$router.push("/dashboard");
       } catch (error) {
         showSwal.methods.showSwal({
