@@ -17,10 +17,10 @@ export default {
         const user = await userPromise;
         const response = await axios.get(API_URL+"/api/v1/sg-5/billing/get-data-user/", {
           headers: {
-            'Authorization': user.id
+            'Authorization': 1
           }
         });
-        return response.data;
+        return response.data ?? user;
       } catch (error) {
         console.error("Error retrieving user:", error);
         throw error; 

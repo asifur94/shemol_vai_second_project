@@ -14,85 +14,26 @@
     </div>
     <div class="card-body p-3 pb-0 mb-0">
       <ul class="list-group">
-        <li
+        <li v-for="(item,index) in data" :key="index"
           class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
         >
           <div class="d-flex flex-column">
             <h6 class="mb-1 text-dark font-weight-bold text-sm">
-              March, 01, 2020
+              {{item.cycle_type}} 
+              <sup>
+              <soft-badge v-if="item.is_paid == true" color="success" variant="gradient" size="xl">
+                Paid
+              </soft-badge>
+              <soft-badge v-else-if="item.is_paid == false" color="danger" variant="gradient" size="xl">
+                Due
+              </soft-badge>
+            </sup>
+
             </h6>
-            <span class="text-xs">#MS-415646</span>
+            <span class="text-xs">#{{item.invoice_number}}</span>
           </div>
           <div class="d-flex align-items-center text-sm">
-            $180
-            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-              <i class="fas fa-file-pdf text-lg me-1" aria-hidden="true"></i>
-              PDF
-            </button>
-          </div>
-        </li>
-        <li
-          class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-        >
-          <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">
-              February, 10, 2021
-            </h6>
-            <span class="text-xs">#RV-126749</span>
-          </div>
-          <div class="d-flex align-items-center text-sm">
-            $250
-            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-              <i class="fas fa-file-pdf text-lg me-1" aria-hidden="true"></i>
-              PDF
-            </button>
-          </div>
-        </li>
-        <li
-          class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-        >
-          <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">
-              April, 05, 2020
-            </h6>
-            <span class="text-xs">#FB-212562</span>
-          </div>
-          <div class="d-flex align-items-center text-sm">
-            $560
-            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-              <i class="fas fa-file-pdf text-lg me-1" aria-hidden="true"></i>
-              PDF
-            </button>
-          </div>
-        </li>
-        <li
-          class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-        >
-          <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">
-              June, 25, 2019
-            </h6>
-            <span class="text-xs">#QW-103578</span>
-          </div>
-          <div class="d-flex align-items-center text-sm">
-            $120
-            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-              <i class="fas fa-file-pdf text-lg me-1" aria-hidden="true"></i>
-              PDF
-            </button>
-          </div>
-        </li>
-        <li
-          class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg"
-        >
-          <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">
-              March, 01, 2019
-            </h6>
-            <span class="text-xs">#AR-803481</span>
-          </div>
-          <div class="d-flex align-items-center text-sm">
-            $300
+            Tk {{item.total_amount}}
             <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
               <i class="fas fa-file-pdf text-lg me-1" aria-hidden="true"></i>
               PDF
@@ -106,11 +47,40 @@
 
 <script>
 import SoftButton from "@/components/SoftButton.vue";
+import SoftBadge from "@/components/SoftBadge.vue";
+//Service 
+import invoiceList from "../../services/get-user-invoice-list.service";
 
 export default {
   name: "InvoiceCard",
   components: {
     SoftButton,
+    SoftBadge
   },
+
+  mounted() {
+    this.getData();
+  },
+
+  data() {
+      return {
+          sortKey: '',
+          sortOrder: 'asc',
+          data: [],
+          filteredData: [],
+          searchQuery: "",
+          currentPage: 1,
+          itemsPerPage: 20
+      };
+  },
+
+  methods: {
+      async getData() {
+          const response = await invoiceList.getUserInvoiceDataList();
+          this.data = response;
+          this.filteredData = response;
+      },
+  }
+  
 };
 </script>

@@ -142,6 +142,7 @@ import BillingCard from "./components/BillingCard.vue";
 import RankingList from "@/examples/Cards/RankingList.vue";
 import RankingListCard from "@/examples/Cards/RankingListCard.vue";
 
+
 export default {
   name: "Billing",
   components: {
@@ -154,8 +155,11 @@ export default {
     RankingList,
     RankingListCard,
   },
+
   mounted() {
     setTooltip();
   },
+
+  
 };
 </script>
