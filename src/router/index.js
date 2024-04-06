@@ -16,6 +16,7 @@ import Users from "../views/Users.vue";
 import OltDataPort from "../views/OltDataPort.vue";
 import OltList from "../views/OltList.vue";
 import AddOlt from "../views/AddOlt.vue";
+import EditOlt from "../views/EditOlt.vue";
 import store from "/src/store";
 import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
@@ -140,6 +141,11 @@ const routes = [
     path: "/add-olt",
     name: "AddOlt",
     component: AddOlt,
+  },
+  {
+    path: "/edit-olt/:edit_id",
+    name: "EditOlt",
+    component: EditOlt,
   },
 ];
 

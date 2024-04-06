@@ -100,10 +100,6 @@
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                         Another Mem
                                                     <span class="sort-icon"> </span></th>
-                                                    <th @click="sort('login_user')" :class="{ 'asc': sortKey === 'login_user' && sortOrder === 'asc', 'desc': sortKey === 'login_user' && sortOrder === 'desc' }"
-                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                        Login User
-                                                    <span class="sort-icon"> </span></th>
                                                     <th @click="sort('olt_billing')" :class="{ 'asc': sortKey === 'olt_billing' && sortOrder === 'asc', 'desc': sortKey === 'olt_billing' && sortOrder === 'desc' }"
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                         Olt Billing
@@ -193,10 +189,6 @@
                                                             class="text-secondary text-xs font-weight-bold">{{data.another_mem}}</span>
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <soft-badge color="success" variant="gradient" size="sm">{{data.login_user}}
-                                                        </soft-badge>
-                                                    </td>
-                                                    <td class="align-middle text-center">
                                                         <span
                                                             class="text-secondary text-xs font-weight-bold">{{data.olt_billing}}</span>
                                                     </td>
@@ -213,10 +205,10 @@
                                                         </soft-badge>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="javascript:;"
+                                                        <router-link :to="{name:'EditOlt', params: { 'edit_id': data.id }}"
                                                             class="text-secondary font-weight-bold text-xs"
                                                             data-toggle="tooltip"
-                                                            data-original-title="Edit user">Edit</a>
+                                                            data-original-title="Edit user">Edit</router-link>
                                                     </td>
                                                 </tr>
                                             </tbody>
