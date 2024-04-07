@@ -11,8 +11,8 @@
         id="iconSidenav"
       ></i>
       <a class="m-0 navbar-brand" href="/">
-        <img :src="logo" class="navbar-brand-img h-100" alt="main_logo" />
-        <span class="ms-1 font-weight-bold">Logo</span>
+        <img :src="logo" class="navbar-brand-img h-100 rounded-circle" alt="main_logo" />
+        <span class="ms-1 font-weight-bold">OL Care</span>
       </a>
     </div>
     <hr class="mt-0 horizontal dark" />
@@ -21,7 +21,7 @@
 </template>
 <script>
 import SidenavList from "./SidenavList.vue";
-import logo from "@/assets/img/logo-ct.png";
+import logo from "@/assets/img/logos/logo.jpg";
 import { mapState } from "vuex";
 
 export default {
@@ -45,3 +45,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.rounded-circle {
+    border-radius: 50%;
+}
+</style>
