@@ -4,16 +4,27 @@
       <div v-if="showPopup" id="myModal" class="modal">
       <div class="modal-content">
         <span @click="popup_close" class="close">&times;</span>
-        <h3 class="form-label">Select Month</h3>
-        <div class="my-3">
-          <select v-model="selected_month" name="" id="" class="form-control">
-            <option value="" disabled selected hidden>Select</option>
+
+
+        
+        <div class="my-3 mx-12">
+          <default-info-card @click="popup_open(selected_item)" class="cursor-pointer"
+                  icon="text-white fas fa-shopping-cart"
+                  :title="selected_item.name"
+                  :port_count="selected_item.port_count"
+                  :olt_modes="selected_item.olt_modes"
+                  :value="'Tk '+(firstIntegerValue?firstIntegerValue*selected_item.price: selected_item.price)"
+                />
+          <select v-model="selected_month" name="" id="" class="form-control mt-3 text-black font-bold text-center bg-white">
+            <option value="" disabled selected hidden>Select Month</option>
             <option  v-for="(item,index) in month_data" :key="index" :value="index">{{item}}</option>
           </select>
         </div>
+        <div class="flex text-center">
         <div class="grid grid-cols-2 gap-2">
           <button class="btn btn-secondary mx-3" @click="popup_close">Cancel</button>
           <button class="btn btn-success" @click="addToCart">Confirm</button>
+        </div>
         </div>
       </div>
     </div>
@@ -23,7 +34,7 @@
           <div class="col-xl-12">
             <div class="row">
               <div v-for="(item,index) in data" :key="index" class="col-md-4 py-3">
-                <default-info-card @click="popup_open(item.id)" class="cursor-pointer"
+                <default-info-card @click="popup_open(item)" class="cursor-pointer"
                   icon="text-white fas fa-shopping-cart"
                   :title="item.name"
                   :port_count="item.port_count"
@@ -69,6 +80,7 @@ export default {
           itemsPerPage: 20,
           showPopup:false,
           selected_month:'',
+          selected_item:[],
           formData:{
             olt_pack:null,
             cycle_type:'',
@@ -77,17 +89,29 @@ export default {
       };
   },
 
+  computed: {
+    firstIntegerValue() {
+      // Extracting the first integer value using regular expression
+      const match = this.selected_month.match(/\d+/);
+      return match ? parseInt(match[0]) : null;
+    }
+  },
+
   methods: {
-      popup_open(id){
-        this.formData.olt_pack =id
+      popup_open(item){
+        this.formData.olt_pack =item.id
         let user= JSON.parse(localStorage.getItem("user_data"));
         this.formData.customer =user.id
+        this.selected_item=item
         this.showPopup = true
       },
       popup_close(){
         this.showPopup = false
          this.formData.olt_pack =null
          this.formData.cycle_type =''
+         this.selected_month=''
+         this.selected_item=[]
+         
       },
       async addToCart(){
         this.formData.cycle_type = this.selected_month
