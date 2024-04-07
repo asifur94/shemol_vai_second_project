@@ -115,12 +115,23 @@ export default {
       },
       async addToCart(){
         this.formData.cycle_type = this.selected_month
-        await Invoice.generateInvoiceData(this.formData)
-         showSwal.methods.showSwal({
-              type: "success",
+        try {
+            await Invoice.generateInvoiceData(this.formData);
+            showSwal.methods.showSwal({
+                type: "success",
                 message: "Invoice Generated Successfully!",
             });
-            this.popup_close()
+            //location.reload()
+            this.popup_close();
+        } catch (err) {
+          let errors = await err.response.data
+          console.error("Error to Generate  Invoice:", errors.error);
+          showSwal.methods.showSwal({
+                type: "error",
+                message: errors.error,
+            });
+          alert(errors.error)
+        }
       },
       async getData() {
           const response = await packageList.getPackageListData();

@@ -21,9 +21,9 @@ export default {
             }
           });
         return response.data;
-      } catch (error) {
-        console.error("Error retrieving user:", error);
-        throw error; 
+      } catch (err) {
+        console.error("Error:", err);
+        throw err; 
       }
     },
   };
