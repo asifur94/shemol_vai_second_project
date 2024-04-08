@@ -22,7 +22,7 @@
         <div class="flex text-center">
         <div class="grid grid-cols-2 gap-2">
           <button class="btn btn-secondary mx-3" @click="popup_close">Cancel</button>
-          <button class="btn btn-success" @click="addToCart">Confirm</button>
+          <button class="btn btn-success" @click="addToCart">Confirm <span v-if="loading" class="spinner-border spinner-border-sm mx-3"></span></button>
         </div>
         </div>
       </div>
@@ -84,7 +84,8 @@ export default {
             olt_pack:null,
             cycle_type:'',
             customer:'',
-          }
+          },
+          loading:false
       };
   },
 
@@ -119,6 +120,7 @@ export default {
          
       },
       async addToCart(){
+        this.loading =true
         this.formData.cycle_type = this.selected_month
         try {
             await Invoice.generateInvoiceData(this.formData);
@@ -126,6 +128,8 @@ export default {
                 type: "success",
                 message: "Invoice Generated Successfully!",
             });
+            
+            this.loading =false
             //location.reload()
             this.popup_close();
         } catch (err) {
@@ -135,6 +139,8 @@ export default {
                 type: "error",
                 message: errors.error,
             });
+          
+          this.loading =false
           alert(errors.error)
         }
       },

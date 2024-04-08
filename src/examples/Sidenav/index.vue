@@ -12,7 +12,7 @@
       ></i>
       <a class="m-0 navbar-brand" href="/">
         <img :src="logo" class="navbar-brand-img h-100 rounded-circle" alt="main_logo" />
-        <span class="ms-1 font-weight-bold">OL Care</span>
+        <span class="ms-1 font-weight-bold">OLT Care</span>
       </a>
     </div>
     <hr class="mt-0 horizontal dark" />
