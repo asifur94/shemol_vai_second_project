@@ -6,9 +6,22 @@
           <h6 class="mb-0">Invoices</h6>
         </div>
         <div class="col-6 text-end">
-          <!-- <soft-button color="success" size="sm" variant="outline"
-            >View All</soft-button
-          > -->
+          <div v-if="showPaymentMethod" id="myModal" class="modal">
+          <div class="modal-content">
+            <span @click="popup_close" class="close">&times;</span>
+
+            <h5 class="text-center">Please Select Payment Method</h5>
+
+            <div class="my-3 mx-12 text-center">
+            <p v-if="pay_loading">Loading ..</p>
+            <span v-if="pay_loading" class="spinner-border spinner-border-sm mx-3"></span>
+             <span v-else @click="getPay()" class="cursor-pointer"><img src="../../assets/img/logos/bkash.svg" style="width:200px" /></span>
+            </div>
+            <div class="flex text-center">
+            
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -34,7 +47,7 @@
           </div>
           <div class="d-flex align-items-center text-sm">
            <span> Tk {{item.total_amount}}</span>
-              <soft-badge @click="getPay(item.invoice_number)" class="ms-3 cursor-pointer" v-if="item.is_paid == false" color="dark" variant="gradient">
+              <soft-badge @click="Pay(item.invoice_number)" class="ms-3 cursor-pointer" v-if="item.is_paid == false" color="dark" variant="gradient">
               Pay
             </soft-badge>
             <button v-else class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
@@ -68,6 +81,9 @@ export default {
 
   data() {
       return {
+        pay_loading:false,
+        showPaymentMethod:false,
+        invoice:'',
           sortKey: '',
           sortOrder: 'asc',
           data: [],
@@ -79,11 +95,27 @@ export default {
   },
 
   methods: {
-    async getPay(Invoice_id){
-        let response = await pay.getPayBill(Invoice_id)
+
+    popup_close(){
+        this.showPopup = false
+        this.invoice = null
+        this.showPaymentMethod =false
+         
+      },
+
+    async Pay(Invoice_id){
+        this.invoice = Invoice_id
+        this.showPaymentMethod =true
+      },
+    async getPay(){        
+        this.pay_loading = true
+        let response = await pay.getPayBill(this.invoice)
         if(response){
           window.open(response.bkashURL);
         }
+        this.showPaymentMethod =false
+        
+        this.pay_loading = false
       },
       async getData() {
           const response = await invoiceList.getUserInvoiceDataList();
@@ -94,3 +126,50 @@ export default {
   
 };
 </script>
+
+
+<style scoped>
+/* The Modal (background) */
+.modal { 
+  display: block;/* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background: #aaaaaa;
+   /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ffffff; /* White background */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+  max-width: 50%; /* Set max width */
+  padding: 20px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+
