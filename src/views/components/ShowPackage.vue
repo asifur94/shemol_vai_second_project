@@ -5,8 +5,6 @@
       <div class="modal-content">
         <span @click="popup_close" class="close">&times;</span>
 
-
-        
         <div class="my-3 mx-12">
           <default-info-card @click="popup_open(selected_item)" class="cursor-pointer"
                   icon="text-white fas fa-shopping-cart"
@@ -14,6 +12,7 @@
                   :port_count="selected_item.port_count"
                   :olt_modes="selected_item.olt_modes"
                   :value="'Tk '+(firstIntegerValue?firstIntegerValue*selected_item.price: selected_item.price)"
+                  :expeire_at="firstIntegerValue?formatDate(new Date(new Date().setMonth(new Date().getMonth() + firstIntegerValue))):null"
                 />
           <select v-model="selected_month" name="" id="" class="form-control mt-3 text-black font-bold text-center bg-white">
             <option value="" disabled selected hidden>Select Month</option>
@@ -98,6 +97,12 @@ export default {
   },
 
   methods: {
+      formatDate(date) {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      },
       popup_open(item){
         this.formData.olt_pack =item.id
         let user= JSON.parse(localStorage.getItem("user_data"));
