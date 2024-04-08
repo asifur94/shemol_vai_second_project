@@ -69,7 +69,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="flex justify-center items-center h-screen">
-                  <Chart/>
+                  <Chart />
                 </div>
               </div>
               <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -267,6 +267,8 @@
         </timeline-list>
       </div>
     </div>
+
+    <!-- hello -->
   </div>
 </template>
 <script>

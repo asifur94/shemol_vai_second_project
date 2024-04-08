@@ -1,6 +1,13 @@
 <template>
   <nav
-    class="shadow-none navbar navbar-main navbar-expand-lg border-radius-xl"
+    :class="[
+      'shadow-none',
+      'navbar',
+      'navbar-main',
+      'navbar-expand-lg',
+      'border-radius-xl',
+      { 'dark-mode': darkMode },
+    ]"
     v-bind="$attrs"
     id="navbarBlur"
     data-scroll="true"
@@ -217,8 +224,8 @@
           <!-- darkmode -->
           <li class="px-3 nav-item d-flex align-items-center">
             <a
-              class="p-0 nav-link"
-              @click="toggleDarkMode"
+              class="p-0 nav-link border-0"
+              @click="toggleDarkMode()"
               :class="textWhite ? textWhite : 'text-body'"
             >
               <i
@@ -258,7 +265,6 @@ export default {
     },
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
-      console.log(this.darkMode);
     },
 
     async logoutUser() {
@@ -291,6 +297,8 @@ export default {
     });
   },
 };
+
+// function
 </script>
 <style>
 a:hover {
