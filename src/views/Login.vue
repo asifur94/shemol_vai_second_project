@@ -40,7 +40,7 @@
                         variant="gradient"
                         color="success"
                         full-width
-                        >Sign in
+                        >Sign in <span v-if="loading" class="spinner-border spinner-border-sm mx-3"></span>
                       </soft-button>
                     </div>
                   </form>

@@ -142,7 +142,7 @@
     >
   </div> -->
   <div class="pt-3 mx-3 mt-3 sidenav-footer">
-    <button @click="logoutUser" class="btn bg-gradient-success mt-4 w-100" type="button">Sign Out</button>
+    <button @click="logoutUser" class="btn bg-gradient-success mt-4 w-100" type="button">Sign Out <span v-if="loading" class="spinner-border spinner-border-sm mx-3"></span></button>
   </div>
 </template>
 <script>
@@ -165,6 +165,7 @@ export default {
   },
   data() {
     return {
+      loading:false,
       title: "Soft UI Dashboard PRO",
       controls: "dashboardsExamples",
       isActive: "active",
@@ -189,7 +190,9 @@ export default {
       return routeArr[1];
     },
     logoutUser() {
+        this.loading=true
         this.$store.dispatch("auth/logout");
+        this.loading=false
     },
   },
 };

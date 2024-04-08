@@ -127,7 +127,7 @@
             size="sm"
             @click="submitForm"
           >
-            Add Olt
+            Add Olt <span v-if="loading" class="spinner-border spinner-border-sm mx-3"></span>
           </button>
             <router-link :to="{name:'OltList'}">
           <button
@@ -153,6 +153,7 @@ import showSwal from "../mixins/showSwal.js";
 export default {
   data() {
     return {
+      loading:false,
       cat_data : [],
       olt_data : [],
       formData: {
@@ -183,6 +184,7 @@ export default {
   },
   methods: {
     async submitForm() {
+      this.loading = true
       console.log("Form submitted with data:", this.formData);
       try {
           if(this.formData.olt_billing && this.formData.olt_billing != '' && this.formData.olt_billing != null){
@@ -196,11 +198,11 @@ export default {
             showSwal.methods.showSwal({
             type: "error",
               message: "Please Provide Billing Information",
-          });
-        }
-        
-        
-        } catch (error) {
+            }); 
+            this.loading=false           
+          }
+        } catch (error) {        
+        this.loading=false
         console.error("Error adding Olt:", error);
         showSwal.methods.showSwal({
           type: "error",
