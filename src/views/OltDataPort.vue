@@ -82,7 +82,7 @@
                     <!-- <td>{{ item.next_update_time }}</td> -->
                     <td>
                       <a @click="editUser(item)" class="actionButton cursor-pointer me-3" data-bs-toggle="tooltip" title="Edit User">
-                        <i class="fas fa-user-edit text-secondary"></i>
+                        <i class="fas fa-edit text-secondary"></i>
                       </a>
                       <a @click="deleteUser(item)" class="actionButton deleteButton cursor-pointer" data-bs-toggle="tooltip" title="Delete User">
                         <i class="fas fa-trash text-secondary"></i>
