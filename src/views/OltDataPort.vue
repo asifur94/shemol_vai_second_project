@@ -38,40 +38,48 @@
               <table id="users-list" class="table table-striped table-bordered">
                 <thead class="thead-light">
                   <tr>
-                     <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }">ID <span class="sort-icon"> </span></th>
-                    <th @click="sort('vlan_id')" :class="{ 'asc': sortKey === 'vlan_id' && sortOrder === 'asc', 'desc': sortKey === 'vlan_id' && sortOrder === 'desc' }">Vlan ID <span class="sort-icon"> </span></th>
-                    <th @click="sort('description')" :class="{ 'asc': sortKey === 'description' && sortOrder === 'asc', 'desc': sortKey === 'description' && sortOrder === 'desc' }">Description <span class="sort-icon"> </span></th>
-                    <th @click="sort('mac_address')" :class="{ 'asc': sortKey === 'mac_address' && sortOrder === 'asc', 'desc': sortKey === 'mac_address' && sortOrder === 'desc' }">Mac Address <span class="sort-icon"> </span></th>
-                    <th @click="sort('port_number')" :class="{ 'asc': sortKey === 'port_number' && sortOrder === 'asc', 'desc': sortKey === 'port_number' && sortOrder === 'desc' }">Port Number <span class="sort-icon"> </span></th>
-                    <th @click="sort('PPPOE_ID')" :class="{ 'asc': sortKey === 'PPPOE_ID' && sortOrder === 'asc', 'desc': sortKey === 'PPPOE_ID' && sortOrder === 'desc' }">PPPOE ID <span class="sort-icon"> </span></th>                    
-                    <th @click="sort('show')" :class="{ 'asc': sortKey === 'show' && sortOrder === 'asc', 'desc': sortKey === 'show' && sortOrder === 'desc' }">Show <span class="sort-icon"> </span></th>
-                    <th @click="sort('distance')" :class="{ 'asc': sortKey === 'distance' && sortOrder === 'asc', 'desc': sortKey === 'distance' && sortOrder === 'desc' }">Distance <span class="sort-icon"> </span></th>
-                    <th @click="sort('last_dereg_reason')" :class="{ 'asc': sortKey === 'last_dereg_reason' && sortOrder === 'asc', 'desc': sortKey === 'last_dereg_reason' && sortOrder === 'desc' }">Last Dereg Reason <span class="sort-icon"> </span></th>
-                    <th @click="sort('alive_time')" :class="{ 'asc': sortKey === 'alive_time' && sortOrder === 'asc', 'desc': sortKey === 'alive_time' && sortOrder === 'desc' }">Alive Time <span class="sort-icon"> </span></th>
-                    <th @click="sort('olt_connect')" :class="{ 'asc': sortKey === 'olt_connect' && sortOrder === 'asc', 'desc': sortKey === 'olt_connect' && sortOrder === 'desc' }">Olt Connect <span class="sort-icon"> </span></th>
-                    <th @click="sort('status')" :class="{ 'asc': sortKey === 'status' && sortOrder === 'asc', 'desc': sortKey === 'status' && sortOrder === 'desc' }">Status <span class="sort-icon"> </span></th>
-                    <th @click="sort('last_update')" :class="{ 'asc': sortKey === 'last_update' && sortOrder === 'asc', 'desc': sortKey === 'last_update' && sortOrder === 'desc' }">Last Update <span class="sort-icon"> </span></th>
-                    <th @click="sort('next_update_time')" :class="{ 'asc': sortKey === 'next_update_time' && sortOrder === 'asc', 'desc': sortKey === 'next_update_time' && sortOrder === 'desc' }">Next Update Time <span class="sort-icon"> </span></th>
+                    <th @click="sort('olt_connect')" :class="{ 'asc': sortKey === 'olt_connect' && sortOrder === 'asc', 'desc': sortKey === 'olt_connect' && sortOrder === 'desc' }">OLT<span class="sort-icon"> </span></th>
+                    <th @click="sort('port_number')" :class="{ 'asc': sortKey === 'port_number' && sortOrder === 'asc', 'desc': sortKey === 'port_number' && sortOrder === 'desc' }">PON NO. <span class="sort-icon"> </span></th>
+                    <th @click="sort('PPPOE_ID')" :class="{ 'asc': sortKey === 'PPPOE_ID' && sortOrder === 'asc', 'desc': sortKey === 'PPPOE_ID' && sortOrder === 'desc' }">DESCRIPTION <span class="sort-icon"> </span></th>   
+                    <th @click="sort('status')" :class="{ 'asc': sortKey === 'status' && sortOrder === 'asc', 'desc': sortKey === 'status' && sortOrder === 'desc' }">STATUS <span class="sort-icon"> </span></th>
+                    <th @click="sort('description')" :class="{ 'asc': sortKey === 'description' && sortOrder === 'asc', 'desc': sortKey === 'description' && sortOrder === 'desc' }">RX POWER <span class="sort-icon"> </span></th>
+                    <th >ONU INFO <span class="sort-icon"> </span></th>
+                     <!-- <th @click="sort('id')" :class="{ 'asc': sortKey === 'id' && sortOrder === 'asc', 'desc': sortKey === 'id' && sortOrder === 'desc' }">ID <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('vlan_id')" :class="{ 'asc': sortKey === 'vlan_id' && sortOrder === 'asc', 'desc': sortKey === 'vlan_id' && sortOrder === 'desc' }">VLAN ID <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('mac_address')" :class="{ 'asc': sortKey === 'mac_address' && sortOrder === 'asc', 'desc': sortKey === 'mac_address' && sortOrder === 'desc' }">MAC ADDRESS <span class="sort-icon"> </span></th> -->                 
+                    <!-- <th @click="sort('show')" :class="{ 'asc': sortKey === 'show' && sortOrder === 'asc', 'desc': sortKey === 'show' && sortOrder === 'desc' }">SHOW <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('distance')" :class="{ 'asc': sortKey === 'distance' && sortOrder === 'asc', 'desc': sortKey === 'distance' && sortOrder === 'desc' }">DISTANCE <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('last_dereg_reason')" :class="{ 'asc': sortKey === 'last_dereg_reason' && sortOrder === 'asc', 'desc': sortKey === 'last_dereg_reason' && sortOrder === 'desc' }">LAST DEREG REASPN <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('alive_time')" :class="{ 'asc': sortKey === 'alive_time' && sortOrder === 'asc', 'desc': sortKey === 'alive_time' && sortOrder === 'desc' }">ALIVE TIME <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('last_update')" :class="{ 'asc': sortKey === 'last_update' && sortOrder === 'asc', 'desc': sortKey === 'last_update' && sortOrder === 'desc' }">LAST UPDATE <span class="sort-icon"> </span></th> -->
+                    <!-- <th @click="sort('next_update_time')" :class="{ 'asc': sortKey === 'next_update_time' && sortOrder === 'asc', 'desc': sortKey === 'next_update_time' && sortOrder === 'desc' }">NEXT UPDATE TIME <span class="sort-icon"> </span></th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody class="text-sm">
                   <!-- Use paginatedData instead of filteredData -->
-                  <tr v-for="(item,index) in paginatedData" :key="index">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.vlan_id }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.mac_address }}</td>
-                    <td>{{ item.port_number }}</td>
-                    <td>{{ item.PPPOE_ID }}</td>
-                    <td>{{ item.show }}</td>
-                    <td>{{ item.distance }}</td>
-                    <td>{{ item.last_dereg_reason }}</td>
-                    <td>{{ item.alive_time }}</td>
+                  <tr v-for="(item,index) in paginatedData" :key="index">                    
                     <td>{{ item.olt_connect }}</td>
+                    <td>{{ item.port_number }}</td>
+                    <td>Pppoe Users: <br>
+                         <span v-for="(item_str,index) in formatdata( item.PPPOE_ID)?? []" :key="index" class="mx-3s">&nbsp;&nbsp;&nbsp;&nbsp; *{{item_str }} <br></span> </td>                 
                     <td>{{ item.status }}</td>
-                    <td>{{ item.last_update }}</td>
-                    <td>{{ item.next_update_time }}</td>
+                    <td>{{ item.description }}</td>
+                    <td><ul>
+                      <li>Onu Id: {{item.port_number}}</li>
+                      <li>Mac: {{item.mac_address}}</li>
+                      <li>Last Dereg Time: </li>
+                      <li>Last Dereg Reason: {{item.last_dereg_reason}}</li>
+                      </ul></td>
+                    <!-- <td>{{ item.id }}</td> -->   
+                    <!-- <td>{{ item.vlan_id }}</td> -->
+                    <!-- <td>{{ item.mac_address }}</td> -->
+                    <!-- <td>{{ item.show }}</td> -->
+                    <!-- <td>{{ item.distance }}</td> -->
+                    <!-- <td>{{ item.last_dereg_reason }}</td> -->
+                    <!-- <td>{{ item.alive_time }}</td> -->
+                    <!-- <td>{{ item.last_update }}</td> -->
+                    <!-- <td>{{ item.next_update_time }}</td> -->
                     <td>
                       <a @click="editUser(item)" class="actionButton cursor-pointer me-3" data-bs-toggle="tooltip" title="Edit User">
                         <i class="fas fa-user-edit text-secondary"></i>
@@ -103,6 +111,7 @@ export default {
   name: "Users",
   data() {
     return {
+      splitData: [],
       sortKey: '',
       sortOrder: 'asc', 
       data: [],
@@ -120,6 +129,11 @@ export default {
     await this.getData();
   },
   methods: {
+    
+    formatdata(data){
+      return this.splitData = data.split(",");
+    },
+
     handleOltData(olt) {
       this.filteredData = this.data.filter(item => {
         for (let key in item) {
@@ -181,7 +195,7 @@ export default {
       }
     }
   },
-  computed: {
+  computed: {    
     totalPages() {
       return Math.ceil(this.filteredData.length / this.itemsPerPage);
     },
