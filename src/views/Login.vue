@@ -13,13 +13,18 @@
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form @submit.prevent="handleLogin" role="form" class="text-start">
+                  <form
+                    @submit.prevent="handleLogin"
+                    role="form"
+                    class="text-start"
+                  >
                     <label>Email</label>
                     <input
                       id="username"
                       type="text"
                       placeholder="User Name"
-                      name="username" v-model="user.username"
+                      name="username"
+                      v-model="user.username"
                       class="form-control"
                     />
                     <label>Password</label>
@@ -40,7 +45,11 @@
                         variant="gradient"
                         color="success"
                         full-width
-                        >Sign in <span v-if="loading" class="spinner-border spinner-border-sm mx-3"></span>
+                        >Sign in
+                        <span
+                          v-if="loading"
+                          class="spinner-border spinner-border-sm mx-3"
+                        ></span>
                       </soft-button>
                     </div>
                   </form>
@@ -127,6 +136,5 @@ export default {
       }
     },
   },
-  
 };
 </script>

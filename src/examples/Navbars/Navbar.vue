@@ -213,6 +213,20 @@
               </li>
             </ul>
           </li>
+
+          <!-- darkmode -->
+          <li class="px-3 nav-item d-flex align-items-center">
+            <a
+              class="p-0 nav-link"
+              @click="toggleDarkMode"
+              :class="textWhite ? textWhite : 'text-body'"
+            >
+              <i
+                class="cursor-pointer"
+                :class="darkMode ? 'fa fa-sun' : 'fa fa-moon'"
+              ></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -227,6 +241,7 @@ export default {
   data() {
     return {
       showMenu: false,
+      darkMode: false,
     };
   },
   props: ["minNav", "textWhite"],
@@ -241,9 +256,13 @@ export default {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
     },
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+      console.log(this.darkMode);
+    },
 
     async logoutUser() {
-        await this.$store.dispatch("auth/logout");
+      await this.$store.dispatch("auth/logout");
     },
   },
   components: {
